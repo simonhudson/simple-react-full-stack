@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 
 import Counter from '../components/counter';
+import ToDoList from '../components/to-do-list';
 
 class App extends Component {
 
@@ -18,6 +19,7 @@ class App extends Component {
         return (
             <>
                 <Counter />
+                <ToDoList />
             </>
         );
     }

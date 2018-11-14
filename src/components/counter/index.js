@@ -34,6 +34,7 @@ class Counter extends Component {
     render() {
         return (
             <>
+                <h1>Counter</h1>
                 <p>{this.state.counterValue}</p>
                 <Button onClick={this.increment} text='+' />
                 <Button onClick={this.decrement} text='-' />
