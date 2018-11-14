@@ -17,15 +17,13 @@ class ToDoList extends Component {
 
     render() {
         
-        const items = [];
-        data.forEach(item => items.push(<ToDoItem text={item.text} />));
-        
         return (
             <>
                 <h1>To-do list</h1>
-                {items}
+                {data.map(item => <ToDoItem text={item.text} />)}
             </>
         );
+        
     }
 }
 
