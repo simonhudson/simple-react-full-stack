@@ -20,7 +20,9 @@ class ToDoList extends Component {
         return (
             <>
                 <h1>To-do list</h1>
-                {data.map(item => <ToDoItem text={item.text} />)}
+                <ul className="to-do__list">
+                    {data.map((item, i) => <ToDoItem text={item.text} index={i} />)}
+                </ul>
             </>
         );
         
