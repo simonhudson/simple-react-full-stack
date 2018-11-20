@@ -12,7 +12,7 @@ class Counter extends Component {
 		super(props);
         
         this.state = {
-            counterValue: 0
+            counterValue: null
         };
         
 	}
@@ -22,13 +22,15 @@ class Counter extends Component {
     }
     
     increment = () => {
-        if (this.state.counterValue === COUNTER_LIMIT_UPPER) return;
-        this.setState(prevState => ({ counterValue: prevState.counterValue + 1 }));
+        const { counterValue } = this.state;
+        if (counterValue === COUNTER_LIMIT_UPPER) return;
+        this.setState({ counterValue: counterValue + 1 });
     }
     
     decrement = () => {
-        if (this.state.counterValue === COUNTER_LIMIT_LOWER) return;
-        this.setState(prevState => ({ counterValue: prevState.counterValue - 1 }));
+        const { counterValue } = this.state;
+        if (counterValue === COUNTER_LIMIT_LOWER) return;
+        this.setState({ counterValue: counterValue - 1 });
     }
 
     render() {
