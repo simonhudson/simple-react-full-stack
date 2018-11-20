@@ -30,6 +30,12 @@ class ToDoList extends Component {
         this.setState({ items });
     }
     
+    deleteItem = index => {
+        const { items } = this.state;
+        items.splice(index, 1);
+        this.setState({ items });
+    }
+    
     render = () => {
         
         const { items } = this.state;
@@ -38,7 +44,7 @@ class ToDoList extends Component {
             <>
                 <h1>To-do list</h1>
                 <ul className="to-do__list">
-                    {items.map((item, i) => <ToDoItem text={item.text} index={i} />)}
+                    {items.map((item, i) => <ToDoItem deleteOnClick={this.deleteItem} text={item.text} index={i} />)}
                 </ul>
                 <AddItem onClick={this.addItem} />
             </>

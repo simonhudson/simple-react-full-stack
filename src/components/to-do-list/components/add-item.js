@@ -8,19 +8,23 @@ class AddItem extends Component {
 		super(props);
         
         this.state = {
-            inputValue: false
+            inputValue: ''
         };
         
 	}
 	
-	updateInputValue = e => this.setState({ inputValue: e.target.value }); 
+	updateInputValue = e => this.setState({ inputValue: e.target.value });
+	
+	sendValue = () => {
+		this.setState({ inputValue: '' });
+		this.props.onClick(this.state.inputValue)
+	}
 	
 	render = () => {
-		const { props } = this;
 		return (
 			<>
-				<input id="to-do__add" onChange={this.updateInputValue} placeholder="Add item" type="text" />
-				<button onClick={e => props.onClick(this.state.inputValue)} type="button">Add</button>
+				<input id="to-do__add" onChange={this.updateInputValue} placeholder="Add item" type="text" value={this.state.inputValue} />
+				<button onClick={this.sendValue} type="button">Add</button>
 			</>
 		);
 	}
