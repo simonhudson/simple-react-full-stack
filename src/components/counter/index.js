@@ -17,7 +17,7 @@ class Counter extends Component {
         
 	}
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.setState({ counterValue: 0 });
     }
     
@@ -33,7 +33,7 @@ class Counter extends Component {
         this.setState({ counterValue: counterValue - 1 });
     }
 
-    render() {
+    render = () => {
         return (
             <>
                 <h1>Counter</h1>
@@ -43,6 +43,7 @@ class Counter extends Component {
             </>
         );
     }
+    
 }
 
 export default Counter;

@@ -15,7 +15,7 @@ class ToDoItem extends Component {
     
     update = () => this.setState(prevState => ({ isComplete: !prevState.isComplete }))
     
-    render() {
+    render = () => {
         
         const { props } = this;
         
@@ -23,7 +23,7 @@ class ToDoItem extends Component {
             <>
                 <li className={`to-do__item ${this.state.isComplete ? 'is-complete' : ''}`}>
                     <input id={`to-to-item--${props.index}`} onClick={this.update} type="checkbox" />&nbsp;
-                    <label for={`to-to-item--${props.index}`}>{props.text}</label>
+                    <label htmlFor={`to-to-item--${props.index}`}>{props.text}</label>
                 </li>
             </>
         );
