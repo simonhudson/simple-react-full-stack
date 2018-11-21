@@ -44,7 +44,7 @@ class ToDoList extends Component {
             <>
                 <h1>To-do list</h1>
                 <ul className="to-do__list">
-                    {items.map((item, i) => <ToDoItem deleteOnClick={this.deleteItem} text={item.text} index={i} />)}
+                    {items.map((item, i) => <ToDoItem deleteOnClick={this.deleteItem} text={item.text} key={i} />)}
                 </ul>
                 <AddItem onClick={this.addItem} />
             </>

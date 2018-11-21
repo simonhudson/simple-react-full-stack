@@ -22,9 +22,9 @@ class ToDoItem extends Component {
         return (
             <>
                 <li className={`to-do__item ${this.state.isComplete ? 'is-complete' : ''}`}>
-                    <input id={`to-to-item--${props.index}`} onClick={this.update} type="checkbox" />&nbsp;
-                    <label htmlFor={`to-to-item--${props.index}`}>{props.text}</label>
-                    <button onClick={e => props.deleteOnClick(props.index)} type="button">Delete</button>
+                    <input id={`to-to-item--${props.key}`} onClick={this.update} type="checkbox" />&nbsp;
+                    <label htmlFor={`to-to-item--${props.key}`}>{props.text}</label>
+                    <button onClick={e => props.deleteOnClick(props.key)} type="button">Delete</button>
                 </li>
             </>
         );
