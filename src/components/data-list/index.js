@@ -7,12 +7,13 @@ import Next from '../../components/pagination/next';
 import Previous from '../../components/pagination/previous';
 import ShowMore from '../../components/pagination/show-more';
 import SortUI from '../../components/sort';
+import Start from '../../components/pagination/start';
 
 const api = require('../../functions/api');
 const sortData = require('../../functions/sort-data');
 
 class DataList extends Component {
-	
+		
 	constructor(props) {
 		super(props);
 		
@@ -62,7 +63,7 @@ class DataList extends Component {
 		this.setState({ isLoading: true });
 		api.get({ endpoint: this.state.apiResponse.metadata.next, callback: this.handleApiResponse });
 	};
-	
+			
 	paginate = e => {
 		const operation = e.target.dataset.operation;
 		const endpoint = this.state.apiResponse.metadata[operation];
@@ -72,8 +73,18 @@ class DataList extends Component {
 			isLoading: true
 		});
 		api.get({ endpoint, callback: this.handleApiResponse });
-	};
+	}
 	
+	start = e => {
+		let endpoint = this.state.apiResponse.metadata.next || this.state.apiResponse.metadata.next;
+		endpoint = `${endpoint.split('?')[0]}`;
+		this.setState({
+			apiResponse: { data: null },
+			isLoading: true
+		});
+		api.get({ endpoint, callback: this.handleApiResponse });
+	}
+			
 	render() {
 		if (this.state.isLoading) return <Loading />;
 		if (this.state.errorMessage) return <div>{this.state.errorMessage}</div>;
@@ -101,6 +112,7 @@ class DataList extends Component {
 				<br />
 				<SortUI onChange={this.sort} options={dataToDisplay} />
 				<ShowMore onClick={this.showMore} disabled={!this.state.apiResponse.metadata.next} />
+				<Start onClick={this.start} />
 				<Previous onClick={this.paginate} disabled={!this.state.apiResponse.metadata.previous} />
 				<Next onClick={this.paginate} disabled={!this.state.apiResponse.metadata.next} />
 				<hr />
