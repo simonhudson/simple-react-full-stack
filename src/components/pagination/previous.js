@@ -3,10 +3,10 @@
 import React from 'react';
 
 const Previous = props => {
-
+	
 	return (
 		<>
-			<button data-operation="previous" onClick={props.onClick} type="button">Previous</button>
+			<button data-operation="previous" disabled={props.disabled} onClick={props.onClick} type="button">Previous</button>
 		</>
 	);
 
