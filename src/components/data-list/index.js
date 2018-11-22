@@ -98,11 +98,12 @@ class DataList extends Component {
 						{this.state.apiResponse.data.map((item, i) => <DataItem item={item} dataToDisplay={dataToDisplay} key={i} />)}
 					</tbody>
 				</table>
+				<br />
 				<SortUI onChange={this.sort} options={dataToDisplay} />
 				<ShowMore onClick={this.showMore} />
 				<Previous onClick={this.paginate} />
 				<Next onClick={this.paginate} />
-				<br /><hr /><br />
+				<hr />
 			</>
 		)
 	}
