@@ -3,6 +3,9 @@
 import React, { Component } from 'react';
 import DataItem from './components/data-item';
 import Loading from '../../components/loading';
+import Next from '../../components/pagination/next';
+import Previous from '../../components/pagination/previous';
+import ShowMore from '../../components/pagination/show-more';
 import SortUI from '../../components/sort';
 
 const api = require('../../functions/api');
@@ -25,15 +28,17 @@ class DataList extends Component {
 	}
 	
 	componentDidMount() {
-		api.get({ endpoint: this.props.endpoint, callback: this.handleApiResponse })
+		api.get({ endpoint: this.props.endpoint, callback: this.handleApiResponse });
 	}
 	
 	handleApiResponse = (err, data) => {
-		this.setState({
+		const currentData = this.state.apiResponse.data;
+		const newData = currentData ? currentData.concat(data.results) : data.results;
+		this.setState(prevState => ({
 			errorMessage: err ? 'Could not load data' : null,
 			isLoading: false,
 			apiResponse: {
-				data: err ? null : data.results,
+				data: err ? null : newData,
 				metadata: err
 					? null
 					: {
@@ -42,7 +47,7 @@ class DataList extends Component {
 						previous: data.previous
 					}
 			}
-		});
+		}));
 	}
 	
 	sort = e => {
@@ -52,6 +57,22 @@ class DataList extends Component {
 			}
 		});
 	}
+	
+	showMore = e => {
+		this.setState({ isLoading: true });
+		api.get({ endpoint: this.state.apiResponse.metadata.next, callback: this.handleApiResponse });
+	};
+	
+	paginate = e => {
+		const operation = e.target.dataset.operation;
+		const endpoint = this.state.apiResponse.metadata[operation];
+		if (!endpoint) return;
+		this.setState({
+			apiResponse: { data: null },
+			isLoading: true
+		});
+		api.get({ endpoint, callback: this.handleApiResponse });
+	};
 	
 	render() {
 		if (this.state.isLoading) return <Loading />;
@@ -77,6 +98,9 @@ class DataList extends Component {
 					</tbody>
 				</table>
 				<SortUI onChange={this.sort} options={dataToDisplay} />
+				<ShowMore onClick={this.showMore} />
+				<Previous onClick={this.paginate} operation="previous" />
+				<Next onClick={this.paginate} operation="next"/>
 			</>
 		)
 	}

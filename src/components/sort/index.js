@@ -9,6 +9,7 @@ const SortUI = props => {
 
 	return (
 		<>
+			<hr />
 			<label htmlFor="sort">Sort</label>
 			<select id="sort" onChange={props.onChange}>
 				<option>Sort by</option>
