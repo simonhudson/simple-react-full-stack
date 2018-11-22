@@ -111,7 +111,7 @@ class DataList extends Component {
 				</table>
 				<br />
 				<SortUI onChange={this.sort} options={dataToDisplay} />
-				<ShowMore onClick={this.showMore} disabled={!this.state.apiResponse.metadata.next} />
+				<ShowMore onClick={this.showMore} disabled={(this.state.apiResponse.data.length === this.state.apiResponse.metadata.count)} />
 				<Start onClick={this.start} />
 				<Previous onClick={this.paginate} disabled={!this.state.apiResponse.metadata.previous} />
 				<Next onClick={this.paginate} disabled={!this.state.apiResponse.metadata.next} />

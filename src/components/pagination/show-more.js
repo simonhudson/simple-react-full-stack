@@ -6,7 +6,7 @@ const ShowMore = props => {
 
 	return (
 		<>
-			<button onClick={props.onClick} type="button">Show more</button>
+			<button disabled={props.disabled} onClick={props.onClick} type="button">Show more</button>
 		</>
 	);
 
