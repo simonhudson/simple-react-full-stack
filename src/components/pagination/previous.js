@@ -6,7 +6,7 @@ const Previous = props => {
 
 	return (
 		<>
-			<button data-operation={props.operation} onClick={props.onClick} type="button">Previous</button>
+			<button data-operation="previous" onClick={props.onClick} type="button">Previous</button>
 		</>
 	);
 

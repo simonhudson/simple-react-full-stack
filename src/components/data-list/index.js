@@ -87,6 +87,7 @@ class DataList extends Component {
 		
 		return (
 			<>
+				<hr />
 				<table>
 					<thead>
 						<tr>
@@ -99,8 +100,9 @@ class DataList extends Component {
 				</table>
 				<SortUI onChange={this.sort} options={dataToDisplay} />
 				<ShowMore onClick={this.showMore} />
-				<Previous onClick={this.paginate} operation="previous" />
-				<Next onClick={this.paginate} operation="next"/>
+				<Previous onClick={this.paginate} />
+				<Next onClick={this.paginate} />
+				<br /><hr /><br />
 			</>
 		)
 	}

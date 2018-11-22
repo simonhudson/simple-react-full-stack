@@ -6,7 +6,7 @@ const Next = props => {
 
 	return (
 		<>
-			<button data-operation={props.operation} onClick={props.onClick} type="button">Next</button>
+			<button data-operation="next" onClick={props.onClick} type="button">Next</button>
 		</>
 	);
 
