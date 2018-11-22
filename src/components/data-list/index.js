@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import DataItem from './components/data-item';
 import Loading from '../../components/loading';
+import SortUI from '../../components/sort';
 
 const api = require('../../functions/api');
 const sortData = require('../../functions/sort-data');
@@ -44,10 +45,10 @@ class DataList extends Component {
 		});
 	}
 	
-	sort = e => {		
+	sort = e => {
 		this.setState({
 			apiResponse: {
-				data: sortData(this.state.apiResponse.data, e.target.dataset.sortKey)
+				data: sortData(this.state.apiResponse.data, e.target.value)
 			}
 		});
 	}
@@ -55,12 +56,27 @@ class DataList extends Component {
 	render() {
 		if (this.state.isLoading) return <Loading />;
 		if (this.state.errorMessage) return <div>{this.state.errorMessage}</div>;
+		
+		const dataToDisplay = [
+			{ text: 'Name', value: 'name' },
+			{ text: 'Height', value: 'height' },
+			{ text: 'Mass', value: 'mass' },
+			{ text: 'Gender', value: 'gender' }
+		];
+		
 		return (
 			<>
-				<ul>
-					{this.state.apiResponse.data.map((item, i) => <DataItem {...item} key={i} />)}
-				</ul>
-				<button data-sort-direction="ascending" data-sort-key="name" onClick={this.sort}>Sort</button>
+				<table>
+					<thead>
+						<tr>
+							{dataToDisplay.map((item, i) => <th id={item.value} key={i}>{item.text}</th>)}
+						</tr>
+					</thead>
+					<tbody>
+						{this.state.apiResponse.data.map((item, i) => <DataItem item={item} dataToDisplay={dataToDisplay} key={i} />)}
+					</tbody>
+				</table>
+				<SortUI onChange={this.sort} options={dataToDisplay} />
 			</>
 		)
 	}

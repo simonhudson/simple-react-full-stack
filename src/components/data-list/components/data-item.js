@@ -3,11 +3,11 @@
 import React from 'react';
 
 const DataItem = props => {
-
+	
 	return (
-		<>
-			<li>{props.name}</li>
-		</>
+		<tr>
+			{props.dataToDisplay.map((item, i) => <td headers={item.value} key={i}>{props.item[item.value]}</td>)}
+		</tr>
 	);
 
 };
