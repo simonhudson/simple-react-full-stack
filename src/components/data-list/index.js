@@ -52,11 +52,13 @@ class DataList extends Component {
 	}
 	
 	sort = e => {
-		this.setState({
+		const sortValue = e.target.value;
+		this.setState(prevState => ({
 			apiResponse: {
-				data: sortData(this.state.apiResponse.data, e.target.value)
+				metadata: prevState.apiResponse.metadata,
+				data: sortData(prevState.apiResponse.data, sortValue)
 			}
-		});
+		}));
 	}
 	
 	showMore = e => {
