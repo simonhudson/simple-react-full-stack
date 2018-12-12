@@ -34,7 +34,8 @@ class DataList extends Component {
 	
 	handleApiResponse = (err, data) => {
 		const currentData = this.state.apiResponse.data;
-		const newData = currentData ? currentData.concat(data.results) : data.results;
+		let newData;
+		if (data) newData = currentData ? currentData.concat(data.results) : data.results;
 		this.setState(prevState => ({
 			errorMessage: err ? 'Could not load data' : null,
 			isLoading: false,
