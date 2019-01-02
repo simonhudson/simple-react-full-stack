@@ -1,0 +1,17 @@
+.show-hide {
+	animation-duration: .5s;
+	animation-fill-mode: both;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: 1;
+	height: auto;
+}
+
+.show-hide.default--show,
+.show-hide.animate--show {
+	height: auto;
+}
+
+.show-hide.default--hide,
+.show-hide.animate--hide {
+	height: 0;
+}
